@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Texto from '../../../components/Texto';
+import Botao from '../../../components/Botao';
 
 export default function Detalhes({
   nome,
@@ -20,9 +21,7 @@ export default function Detalhes({
       <Texto style={estilos.descricao}>{descricao}</Texto>
       <Texto style={estilos.preco}>{preco}</Texto>
 
-      <TouchableOpacity style={estilos.botao} onPress={() => {}}>
-        <Texto style={estilos.textoBotao}>{botao}</Texto>
-      </TouchableOpacity>
+      <Botao style={estilos.botao} onPress={() => {}} texto={botao} />
     </>
   );
 }
