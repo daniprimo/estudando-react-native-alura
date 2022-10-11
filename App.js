@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import Home from './src/telas/Home';
 
 export default function App() {
