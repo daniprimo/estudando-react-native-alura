@@ -13,6 +13,7 @@ import Texto from './Texto';
 import Gradiente from '../assets/gradiente.svg';
 import topo from '../assets/topo.png';
 import VoltarSVG from '../assets/voltar.svg';
+import {Gradient} from 'phosphor-react-native';
 
 const largura = Dimensions.get('screen').width;
 const ALTURA_PADRAO = 270;
@@ -23,19 +24,15 @@ export default function Topo({titulo, imagem = topo, altura = ALTURA_PADRAO}) {
   return (
     <>
       <Image source={imagem} style={estilos.topo} />
-      {/* <Gradiente
-        width={largura}
-        height={(130 / 360) * largura}
-        style={estilos.gradiente}
-      />
+
       <Texto style={estilos.titulo}>{titulo}</Texto>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
         }}
         style={estilos.botaoVoltar}>
-        <VoltarSVG color="white" style={estilos.voltar} />
-      </TouchableOpacity> */}
+        <Image source={VoltarSVG} style={estilos.voltar} />
+      </TouchableOpacity>
     </>
   );
 }
@@ -45,6 +42,7 @@ const funcaoEstilos = altura =>
     topo: {
       width: '100%',
       height: altura,
+      backgroundColor: '#000F',
     },
     gradiente: {
       position: 'absolute',
