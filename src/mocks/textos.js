@@ -1,5 +1,5 @@
 const textos = {
-  boasVindas: 'Olá Daniel o Lindo',
+  boasVindas: 'Olá Daniel seu Lindo',
   legenda: 'Encontre os produtores mais próximos a você!',
   legendaMelhoresProdutores: 'Veja os produtores com 4+ estrelas!',
   tituloProdutores: 'Produtores',
@@ -8,6 +8,8 @@ const textos = {
   topoCesta: 'Detalhe da cesta',
   botaoComprar: 'Comprar',
   tituloItens: 'Itens da cesta',
+  mensagemCompra:
+    'Agradecemos pela compra da cesta $NOME, seu pedido chegara em breve',
 };
 
 export default textos;
