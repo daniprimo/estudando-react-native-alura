@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 import Texto from '../../componentes/Texto';
 
@@ -8,26 +9,33 @@ import useTextos from '../../hooks/useTextos';
 import Detalhes from './componentes/Detalhes';
 import Item from './componentes/Item';
 
-export default function Cesta({ detalhes, itens, produtor }) {
-  const { topoCesta, tituloItens } = useTextos();
+export default function Cesta() {
+  const route = useRoute();
+  const {topoCesta, tituloItens} = useTextos();
 
-  return <>
-    <FlatList
-      data={itens}
-      renderItem={Item}
-      keyExtractor={({ nome }) => nome }
-      ListHeaderComponent={() => {
-        return <>
-          <Topo titulo={topoCesta} />
-          <View style={estilos.cesta}>
-            <Detalhes {...detalhes} produtor={produtor} />
-            <Texto style={estilos.titulo}>{ tituloItens }</Texto>
-          </View>
-        </>
-      }}
-      style={estilos.lista}
-    />
-  </>
+  const {detalhes, itens, produtor} = route.params;
+
+  return (
+    <>
+      <FlatList
+        data={itens}
+        renderItem={Item}
+        keyExtractor={({nome}) => nome}
+        ListHeaderComponent={() => {
+          return (
+            <>
+              <Topo titulo={topoCesta} />
+              <View style={estilos.cesta}>
+                <Detalhes {...detalhes} produtor={produtor} />
+                <Texto style={estilos.titulo}>{tituloItens}</Texto>
+              </View>
+            </>
+          );
+        }}
+        style={estilos.lista}
+      />
+    </>
+  );
 }
 
 const estilos = StyleSheet.create({
@@ -35,8 +43,8 @@ const estilos = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   titulo: {
-    color: "#464646",
-    fontWeight: "bold",
+    color: '#464646',
+    fontWeight: 'bold',
     marginTop: 32,
     marginBottom: 8,
     fontSize: 20,
