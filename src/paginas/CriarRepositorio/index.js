@@ -9,14 +9,14 @@ export default function CriarRepositorio({ route, navigation }) {
 
   async function criar() {
     const resultado = await criarRepositoriosDoUsuario(
-      route.params.item.postId,
+      route.params.id,
       nome,
       data
     )
 
 
     if (resultado === 'Sucesso') {
-      Alert.alert('Repositorio cr5iado!')
+      Alert.alert('Repositorio criado!')
       navigation.goBack();
     }
     else {
