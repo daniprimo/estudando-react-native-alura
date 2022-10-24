@@ -35,7 +35,12 @@ const mockRequisicaoError = () => {
 
 
 
-describe("repositorio/leilao", () => {
+describe("negocio/repositorio/leilao", () => {
+
+    beforeEach(() => {
+        apiLeiloes.get.mockClear();
+    });
+
     describe("Obtem leiloes", () => {
         it('Deve retornor uma lista de leilões', async () => {
             apiLeiloes.get.mockImplementation(() => mockRequisicao(mockLeiloes))
@@ -43,6 +48,11 @@ describe("repositorio/leilao", () => {
             const leiloes = await obtemLeiloes();
 
             expect(leiloes).toEqual(mockLeiloes);
+
+            //verificando se foi chamada com o parametro certo
+            expect(apiLeiloes.get).toHaveBeenCalledWith('/leiloes');
+            expect(apiLeiloes.get).toHaveBeenCalledTimes(1);
+
         });
 
         it('Deve retornor uma lista vazia quando a requisição falhar', async () => {
@@ -51,7 +61,34 @@ describe("repositorio/leilao", () => {
             const leiloes = await obtemLeiloes();
 
             expect(leiloes).toEqual([]);
+
+            expect(apiLeiloes.get).toHaveBeenCalledWith('/leiloes');
+            expect(apiLeiloes.get).toHaveBeenCalledTimes(1);
+
         });
 
     });
+
+
+    describe('obtemLeilao', () => {
+        it('Deve retorna um leilao', async () => {
+            apiLeiloes.get.mockImplementation(() => mockRequisicao(mockLeiloes[0]))
+
+            const leilao = await obtemLeilao(1);
+
+            expect(leilao).toEqual(mockLeiloes[0])
+        });
+
+        it('Deve retorna um objeto vazio caso erro na aquisicao', async () => {
+            apiLeiloes.get.mockImplementation(() => mockRequisicaoError())
+
+            const leilao = await obtemLeilao(1);
+
+            expect(leilao).toEqual({});
+        });
+
+
+    });
+
+
 });
