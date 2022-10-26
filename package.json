@@ -10,6 +10,7 @@
     "eject": "expo eject",
     "api": "json-server --host 192.168.1.6 --watch db.json",
     "test": "jest --watch --coverage=false",
+    "testConv": "jest --watch --coverage",
     "testFinal": "jest"
   },
   "dependencies": {
